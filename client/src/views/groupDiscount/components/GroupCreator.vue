@@ -33,10 +33,11 @@
 
             <div style="grid-column: 1 / span 2" class="discount-rules">
                 <div v-for="(interval, index) in intervals" :key="index">
-                    <span>{{ interval }}</span>
+                    <span>{{ interval }} discount(%):</span>
                     <v-select v-model="invervalValues[interval]" :items="options" single-line hide-details label="select" menu-props="auto"></v-select>
                 </div>
             </div>
+            
             <div v-if="invalidArray.length > 0">
                 <section v-for="invalid in invalidArray" :key="invalid">
                     <span style="color: red;">{{ invalid }}</span><br />
@@ -96,7 +97,8 @@ export default {
                     university: this.university,
                     endDate: this.date,
                     intervals: this.invervalValues,
-                    status: 'Progress'
+                    status: 'Progress',
+                    discount: 0,
                 }
                 this.$emit('saved', newGroupDiscount)
                 this.resetGroup()

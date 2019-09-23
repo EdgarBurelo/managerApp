@@ -5,11 +5,17 @@
         </section>
         <section>
             <h1>Discount Group</h1>
+
             <h2>How does it work? </h2>
             <p class="group-info">Add your name to the group by midnight Saturday, <b>{{ formatDate() }}.</b> After the deadline, 
                 once we have reached 50 sign-ups, we will open the group discount for you to purchase your 
                 discounted AMBOSS access!
             </p>
+
+            <div class="group-status">
+                <p>{{ groupData.university }} Group Discount Sign-up</p>
+                <p>Total In group: {{ groupData.invitee ? groupData.invitee.users.length : 0  }}</p>
+            </div>
 
             <div>
                 <h4>Sign me up!</h4>
@@ -19,17 +25,18 @@
                 </div>
             </div>
             <div style="margin: 10px 0">
-                <div class="flex-grow-1"></div>
                 <v-btn :disabled="groupData.status !== 'Progress'" color="primary" style="" @click="submitNewUser">
                     <span>submit</span>
                 </v-btn>
+                <span v-if="groupData.status !== 'Progress'" style="margin-left: 10px; color: Red">The Discount Group has been closed.</span>
             </div>
 
-            <div class="group-status">
-                <h3>{{ groupData.university }} Group Discount Sign-up</h3>
-                <h3>Total In group: {{ groupData.invitee ? groupData.invitee.users.length : 0  }}</h3>
+            <div class="actual-discount">
+                <span style="font-size: 25px; color: #3081D5">{{ groupData.invitee ? groupData.invitee.users.length : 0  }}</span>
+                <span><b> total persons </b></span>
+                <span style="font-size: 25px; color: #3081D5">{{ groupData.discount }}%</span>
             </div>
-            <section style="margin: 20px auto;">
+            <section style="margin: 10px auto;">
                 <h4>Regular price for AMBOSS Plus</h4>
                 <div class="pricing">
                     <span>$123</span>
@@ -62,17 +69,17 @@ export default {
                 mail: '',
                 name: ''
             },
-            groupData: null
+            groupData: {
+                university: 1,
+                invitee: null
+            }
         }
     },
     async created () {
-        // eslint-disable-next-line
-        console.log(this.groupId);
         await this.loadDiscountGroup();
     },
     methods: {
         submitNewUser () {
-            console.log(this.mail, this.user);
             const body = {
                 user: this.user,
                 id: this.groupId
@@ -100,7 +107,7 @@ export default {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 10px;
-        margin-top: 4em;
+        
     }
 
     img {
@@ -127,14 +134,23 @@ export default {
         margin-bottom: 15px
     }
 
-    .group-status {
-        margin: 10px auto;
-        display: grid;
+    .group-status, .group-status.p {
+        margin: 20px 0;
+        text-align: center;
+    }
 
+    p {
+        margin-bottom: 3px !important;
+        font-size: 24px
     }
 
     .pricing {
         display: grid;
         grid-template-columns: repeat(2, 1fr)
+    }
+
+    .actual-discount {
+        text-align: center;
+        font-size: 17px;
     }
 </style>

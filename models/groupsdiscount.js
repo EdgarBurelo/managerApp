@@ -25,6 +25,10 @@ module.exports = (sequelize, DataTypes) => {
         status: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        discount: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
 
     });

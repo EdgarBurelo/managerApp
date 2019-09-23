@@ -21,13 +21,16 @@
                         <span><b>Total Students:</b> {{ groupDiscount.invitee ? groupDiscount.invitee.users.length : 0 }} </span>
                     </section>
                     <section>
+                        <span><b>discount:</b> {{ groupDiscount.discount }}%</span>
+                    </section>
+                    <section>
                         <span><b>Status:</b> {{ groupDiscount.status }}</span>
                     </section>
                     <section class="send-btn">
-                        <v-btn :to="{ path: `/${groupDiscount.id}/discount-group`}" style="margin-right: 10px" :disabled="groupDiscount.status !== 'Progress'" color="primary">
+                        <v-btn :to="{ path: `/${groupDiscount.id}/discount-group`}" style="margin-right: 10px" color="primary">
                             <span>View Group</span>
                         </v-btn>
-                        <v-btn :disabled="groupDiscount.status !== 'Progress'" color="success">
+                        <v-btn @click="closeGroup(groupDiscount.id)" :disabled="groupDiscount.status !== 'Progress'" color="success">
                             <span>Send Code</span>
                         </v-btn>
                     </section>
@@ -65,6 +68,11 @@ export default {
                 newData.push(response.data);
             })
             this.groupDiscounts = newData;
+        },
+
+        closeGroup (id) {
+            API.get(`/close/${id}`);
+            this.groupDiscounts[this.groupDiscounts.findIndex(groupDiscount => groupDiscount.id === id)].status = 'Closed'
         }
     }
     
@@ -82,7 +90,7 @@ export default {
 
     .group-info {
         display: grid;
-        grid-template-columns: repeat(4, 1fr) 290px;
+        grid-template-columns: repeat(5, 1fr) 290px;
         grid-column-gap: 5px;
         margin: 10px 0;
     }
