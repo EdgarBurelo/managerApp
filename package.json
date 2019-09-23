@@ -1,0 +1,17 @@
+{
+  "name": "groupmanager",
+  "version": "1.0.0",
+  "description": "--",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run test:unit",
+    "start": "node node_modules/nodemon/bin/nodemon.js server.js"
+  },
+  "author": "Edgar Burelo",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.2"
+  }
+}
