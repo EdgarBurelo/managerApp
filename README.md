@@ -13,9 +13,9 @@ All the server dependencies are listed in the package.json, run the command <cod
 Once the process is finished the frontend has to be built so the server can be started, execute the command <code>npm run start</code>. This command will go to the client folder, execute <code>npm install</code> for the frontend dependencies and then <code>npm run build</code> to create the 'dist' folder inside the client. At the end the same script should also execute <code>npm run dev</code> in the server folder to start the application.
 
 If something goes wrong the manuales steps are:
-<li> In the <code>./client<code> folder run <code>npm install</code>.</li>
-<li> In the <code>./client<code> folder run <code>npm run build</code>.</li>
-<li> In the <code>root<code> folder run <code>npm run dev</code>.</li>
+<li> In the <code>./client</code> folder run <code>npm install</code>.</li>
+<li> In the <code>./client</code> folder run <code>npm run build</code>.</li>
+<li> In the <code>root</code> folder run <code>npm run dev</code>.</li>
 
 ### APP 
 The app will be started in the port 8000. In the '/' route the app will show the 'Group Discount Manager' page, in which the users are able to create new 'Group Discount', this form will check that the fields are correctly field. In this same page all the created 'Group Discount' will be shown individualy with the status information for each of them.
