@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
 import GroupDiscountManager from './views/groupDiscount/GroupDiscountManager.vue'
 import DiscountGroup from './views/groupDiscount/DiscountGroup.vue'
 
@@ -13,10 +12,10 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: GroupDiscountManager
     },
     {
-      path: '/discountmanager',
+      path: '/',
       name: 'GroupDiscountManager',
       component: GroupDiscountManager
     },

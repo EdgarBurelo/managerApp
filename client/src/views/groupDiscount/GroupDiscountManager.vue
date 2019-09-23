@@ -18,13 +18,13 @@
                         <span><b>End Date:</b> {{ groupDiscount.endDate }}</span>
                     </section>
                     <section>
-                        <span><b>Total Students:</b> {{ groupDiscount.invitee ? invitee.users.length : 0 }} </span>
+                        <span><b>Total Students:</b> {{ groupDiscount.invitee ? groupDiscount.invitee.users.length : 0 }} </span>
                     </section>
                     <section>
                         <span><b>Status:</b> {{ groupDiscount.status }}</span>
                     </section>
                     <section class="send-btn">
-                        <v-btn style="margin-right: 10px" :disabled="groupDiscount.status !== 'Progress'" color="primary">
+                        <v-btn :to="{ path: `/${groupDiscount.id}/discount-group`}" style="margin-right: 10px" :disabled="groupDiscount.status !== 'Progress'" color="primary">
                             <span>View Group</span>
                         </v-btn>
                         <v-btn :disabled="groupDiscount.status !== 'Progress'" color="success">

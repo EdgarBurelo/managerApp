@@ -4,7 +4,9 @@ const controller = require('../controllers/groupdiscountController');
 
 // router.route("/").post(controller.save);
 router.route("/create").post(controller.save);
+router.route("/addUser").post(controller.saveNewUser);
 router.route("/allManager").get(controller.findAll);
+router.route("/:groupId").get(controller.findOne);
 
 router.use(function (req, res) {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));

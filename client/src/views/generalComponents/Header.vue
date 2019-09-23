@@ -5,10 +5,10 @@
     </v-toolbar-title>
     <div class="flex-grow-1"></div>
     <v-toolbar-items>
-      <v-btn :to="{path: '/'}" class="toolbar-btn" text>
+      <!-- <v-btn :to="{path: '/'}" class="toolbar-btn" text>
         <span class="mr-2">Home</span>
-      </v-btn>
-      <v-btn :to="{path: '/discountmanager'}" class="toolbar-btn" text>
+      </v-btn> -->
+      <v-btn :to="{path: '/'}" class="toolbar-btn" text>
         <span class="mr-2">Group Manager</span>
       </v-btn>
     </v-toolbar-items>
