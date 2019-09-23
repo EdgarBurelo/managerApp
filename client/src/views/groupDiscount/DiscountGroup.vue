@@ -86,6 +86,11 @@ export default {
             }
              API.post('/addUser', body).then(response => {
                 console.log(response);
+                if (this.groupData.invitee) {
+                    this.groupData.invitee.users.push(this.users);
+                } else {
+                    this.groupData.invitee.users = [this.user];
+                }
             })
         },
 

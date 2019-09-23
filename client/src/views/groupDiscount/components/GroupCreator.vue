@@ -37,7 +37,7 @@
                     <v-select v-model="invervalValues[interval]" :items="options" single-line hide-details label="select" menu-props="auto"></v-select>
                 </div>
             </div>
-            
+
             <div v-if="invalidArray.length > 0">
                 <section v-for="invalid in invalidArray" :key="invalid">
                     <span style="color: red;">{{ invalid }}</span><br />
@@ -139,7 +139,7 @@ export default {
         grid-column-gap: 30px;
         margin: 10px 0;
     }
-
+    
     >>> .v-text-field__details {
         display: none;
     }

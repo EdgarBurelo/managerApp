@@ -9,7 +9,7 @@ let PORT = process.env.PORT || 8000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors())
-app.use(express.static('client/build'));
+app.use(express.static('client/dist'));
 
 app.use('/api', routes);
 
