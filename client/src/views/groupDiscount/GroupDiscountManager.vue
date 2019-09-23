@@ -1,14 +1,20 @@
 <template>
     <div>
-        GroupDiscountManager
-    </div>    
+        <h2>Group Discount Manager</h2>
+        <GroupCreator @saved="group => createNewGroup(group)" />
+        <section class="active-groups">
+            <h2>Active Group Discount</h2>
+        </section>
+    </div>
 </template>
 
 <script>
 import { API } from '../../api/api-common'
+import GroupCreator from './components/GroupCreator'
 
 export default {
     name: 'GroupDiscountManager',
+    components: { GroupCreator },
     data () {
         return {
             info: null,
@@ -24,6 +30,10 @@ export default {
                 // eslint-disable-next-line
                 console.log(this.info);
             });
+        },
+
+        createNewGroup (discountGroup) {
+            console.log(discountGroup)
         }
     }
     
@@ -31,5 +41,12 @@ export default {
 </script>
 
 <style scoped>
+    h2 {
+        margin-bottom: 10px;
+    } 
+
+    .active-groups {
+        margin-top: 20px;
+    }
 
 </style>
