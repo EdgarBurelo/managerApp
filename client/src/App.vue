@@ -21,6 +21,11 @@ export default {
 </script>
 
 <style>
+  .v-card {
+    border-radius: 10px;
+    padding: 15px;
+  }
+
   .v-toolbar__content {
     max-width: 1200px;
     margin: 0 auto;

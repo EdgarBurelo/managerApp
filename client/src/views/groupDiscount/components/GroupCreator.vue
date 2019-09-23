@@ -95,7 +95,8 @@ export default {
                 let newGroupDiscount = {
                     university: this.university,
                     endDate: this.date,
-                    rules: this.invervalValues
+                    intervals: this.invervalValues,
+                    status: 'Progress'
                 }
                 this.$emit('saved', newGroupDiscount)
                 this.resetGroup()
@@ -118,11 +119,6 @@ export default {
 </script>
 
 <style scoped>
-    .v-card {
-        border-radius: 10px;
-        padding: 15px;
-    }
-
     .card-title {
         font-size: 18px;
     }

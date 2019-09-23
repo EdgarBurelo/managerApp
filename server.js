@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const routes = require("./routes");
+const db = require("./models");
 
 const app = express();
 
@@ -9,18 +11,12 @@ app.use(express.json());
 app.use(cors())
 app.use(express.static('client/build'));
 
-app.get("/api",(req,res) => {
-    console.log('Resolved');
-    res.json([{ id: 1, name: 'algo1' }, { id: 2, name: 'algo2' }]);
+app.use('/api', routes);
+
+db.sequelize.sync({ force: true }).then(() => {
+    app.listen(PORT, () => {
+        console.log('App listening on PORT ' + PORT);
+    });
+}).catch((err) => {
+    if (err) throw err;
 });
-
-// db.sequelize.sync({ force: false }).then(() => {
-app.listen(PORT, () => {
-    console.log('App listening on PORT ' + PORT);
-});
-// }).catch((err) => {
-
-//     if (err) throw err;
-
-//     console.log("EROROOOR");
-// });

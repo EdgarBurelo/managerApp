@@ -4,6 +4,35 @@
         <GroupCreator @saved="group => createNewGroup(group)" />
         <section class="active-groups">
             <h2>Active Group Discount</h2>
+            <template v-if="groupDiscounts && groupDiscounts.length === 0">
+                <v-card>
+                    No Discount Groups created, add a new one and it will appear in this section
+                </v-card>
+            </template>
+            <div v-else v-for="groupDiscount in groupDiscounts" :key="groupDiscount.id">
+                <v-card class="group-info">
+                    <section>
+                        <span><b>University:</b> {{ groupDiscount.university}}</span>
+                    </section>
+                    <section>
+                        <span><b>End Date:</b> {{ groupDiscount.endDate }}</span>
+                    </section>
+                    <section>
+                        <span><b>Total Students:</b> {{ groupDiscount.invitee ? invitee.users.length : 0 }} </span>
+                    </section>
+                    <section>
+                        <span><b>Status:</b> {{ groupDiscount.status }}</span>
+                    </section>
+                    <section class="send-btn">
+                        <v-btn style="margin-right: 10px" :disabled="groupDiscount.status !== 'Progress'" color="primary">
+                            <span>View Group</span>
+                        </v-btn>
+                        <v-btn :disabled="groupDiscount.status !== 'Progress'" color="success">
+                            <span>Send Code</span>
+                        </v-btn>
+                    </section>
+                </v-card>
+            </div>
         </section>
     </div>
 </template>
@@ -17,7 +46,7 @@ export default {
     components: { GroupCreator },
     data () {
         return {
-            info: null,
+            groupDiscounts: [],
         }
     },
     mounted () {
@@ -25,15 +54,17 @@ export default {
     },
     methods:  {
         getInfo () {
-            API.get().then(response => {
-                this.info = response.data;
-                // eslint-disable-next-line
-                console.log(this.info);
+            API.get('/allManager').then(response => {
+                this.groupDiscounts = response.data;
             });
         },
 
         createNewGroup (discountGroup) {
-            console.log(discountGroup)
+            let newData = this.groupDiscounts
+            API.post('/create', discountGroup).then(response => {
+                newData.push(response.data);
+            })
+            this.groupDiscounts = newData;
         }
     }
     
@@ -49,4 +80,19 @@ export default {
         margin-top: 20px;
     }
 
+    .group-info {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr) 290px;
+        grid-column-gap: 5px;
+        margin: 10px 0;
+    }
+
+    .send-btn {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    section {
+        align-self: center;
+    }
 </style>
